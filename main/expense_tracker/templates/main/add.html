@@ -1,0 +1,80 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    <form method ="post" action= "/add_list" class="form-horizontal">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="add_name" required></input><br>
+            <label>Category</label>
+            <select name="add_category" id="se_category" class="form-control" required>
+                <option value="Meal">Meal</option>
+                <option value="Vehicle">Vehicle</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Grocery">Grocery</option>
+                <option value="Utility">Utility</option>
+                <option value="Online Shopping">Online Shopping</option>
+                <option value="Gain">Gain</option>
+                <option value="Others">Others</option>
+            </select><br>
+            <label>Amount</label>
+            <input type="number" class="form-control" name="add_amount" required></input><br>
+            <label>Note</label>
+            <input type="text" class="form-control" name="add_note" required></input><br>
+            <label>Year</label>
+            <select name="add_year" id="se_year" class="form-control" required>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+            </select><br>
+            <label>Month</label>
+            <select name="add_month" id="se_month" class="form-control" required>
+                <option value="Jan">Jan</option>
+                <option value="Feb">Feb</option>
+                <option value="Mar">Mar</option>
+                <option value="Apr">Apr</option>
+                <option value="May">May</option>
+                <option value="Jun">Jun</option>
+                <option value="Jul">Jul</option>
+                <option value="Aug">Aug</option>
+                <option value="Sep">Sep</option>
+                <option value="Oct">Oct</option>
+                <option value="Nov">Nov</option>
+                <option value="Dec">Dec</option>
+            </select><br>
+            {% comment %} <label>Date</label>
+            <input type="date" class="form-control" name="add_date" required></input><br>
+            <label>Time</label>
+            <input type="time" class="form-control" name="add_time" required></input><br> {% endcomment %}
+            <Button type="submit" class="form-control">Add</Button>
+        </div>
+    </form>
+
+
+
+{% endblock content %}
+
+{% block style %}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+}
+.form-horizontal{
+    margin-left: 50px;
+    padding: 20px;
+    text-align: left;
+}
+.form-control{
+    width: 50%;
+}
+
+{% endblock style %}
+
+

@@ -1,0 +1,188 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="date_sec">
+    <form action="/list_view" method="post">
+        {% csrf_token %}
+        <label for="year" class="select">Year</label>
+        <select name="sse_year" id="se_year" class="select">
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+        </select>
+
+        <label for="month" class="select">Month</label>
+        <select name="sse_month" id="se_month" class="select">
+            <option value="Jan">Jan</option>
+            <option value="Feb">Feb</option>
+            <option value="Mar">Mar</option>
+            <option value="Apr">Apr</option>
+            <option value="May">May</option>
+            <option value="Jun">Jun</option>
+            <option value="Jul">Jul</option>
+            <option value="Aug">Aug</option>
+            <option value="Sep">Sep</option>
+            <option value="Oct">Oct</option>
+            <option value="Nov">Nov</option>
+            <option value="Dec">Dec</option>
+        </select>
+
+        <button class="show_btn" type="submit">Show</button>
+    </form>
+    <div class="dis_selected_yearandmonth">
+        <h6>Selected Year and Month : {{se_year}} | {{se_month}}</h6>
+    </div>
+</div>
+<div class="list_container">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="transaction_cont">
+            <h3 class="trans_heading">{{item_name}}</h3>
+            <div class = "transaction_section">
+                <div class="column_names">
+                    <h5 class="col col_date">Date</h5>
+                    <h5 class="col col_name">Name</h5>
+                    <h5 class="col col_category">Category</h5>
+                    <h5 class="col col_amt">Amount</h5>
+                    <h5 class="col col_note">Note</h5>
+                    <h5 class="col col_delete">Delete</h5>
+                </div>
+                <div class="items">
+                    {% for i in list_data reversed %}
+                        <div class="items_scrollview">
+                            <h5 name = "se_item_name" class="txt col col_date">{{i.time}}</h5>
+                            <h5 class="txt col col_name">{{ i.name }}</h5>
+                            <h5 class="txt col col_category">{{ i.category }}</h5>
+                            <h5 class="txt amt_txt col col_amt">{{ i.amount }} rs</h5>
+                            <h5 class="txt col col_note">{{ i.note }} </h5>  
+                            <a href="delete/{{i.id}}" class="col_delete del_btn">Delete</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+{% endblock content %}
+
+
+{% block style %}
+    {% comment %} date sec {% endcomment %}
+    .date_sec{
+        margin-left: 20px;
+        margin-top: 5px;
+        display : flex;
+        flex-direction: row;
+        
+    }
+    .select{
+        font-size: 10px;
+    }
+    .show_btn{
+        font-size: 10px;
+        border: none;
+
+    }
+    .dis_selected_yearandmonth{
+        position: absolute;
+        margin-left: 20px;
+        margin-top: 5px;
+        margin-right: 20px;
+        right: 0;
+
+
+    }
+    .dis_selected_yearandmonth h6{
+        font-size: 12px;
+    }
+
+
+    {% comment %} transaction {% endcomment %}
+    .transaction_cont{
+        padding: 10px;
+    }
+    .trans_heading{
+        font-size: 15px;
+        opacity: 60%;
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+    .transaction_section{
+        width: 100%;
+        padding: 10px;
+        height: 510px;
+        bottom: 0%;
+        border-radius: 10px;
+        box-shadow: 0px 0px 2px;
+    }
+
+    .column_names{
+        border-bottom: 0.1px solid rgba(162, 162, 162, 0.45);
+        display: flex;
+        flex-direction: row;
+    }
+    .items{
+        overflow-y: auto;
+        height: 490px;
+        scrollbar-width: none;
+    }
+    .items_scrollview{
+        height: auto;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+
+
+    }
+
+    .col_date{
+        width: auto;
+    }
+
+    .col_name{
+        margin-left: 10px;
+        width: 20%;
+
+    }
+
+    .col_category{
+        margin-left: 10px;
+        width: 20%;
+    }
+
+    .col_amt{
+        margin-left: 10px;
+        width: 10%;
+
+    }
+
+    .col_note{
+        margin-left: 10px;
+        width: 20%;
+    }
+    .col_delete{
+        margin-left: 10px;
+        font-size: 11px;
+        width:10%;
+        border: none;
+        background-color: white;
+
+    }
+    .col{
+        text-align: start;
+        font-size: 11px;
+    }
+    .txt{
+        color:  rgba(61, 101, 246, 0.826);
+    }
+    .amt_txt{
+        color: green;
+    }
+
+{% endblock style %}
