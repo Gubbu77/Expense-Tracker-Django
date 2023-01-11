@@ -74,22 +74,22 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'ExpenseTracker',
-        'CLIENT': {
-                'host': 'mongodb+srv://Gubbu:y%40v3XD%40d-ZNeXCs@cluster0.c8nak47.mongodb.net/test'
-            } 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'ExpenseTracker',
+#         'CLIENT': {
+#                 'host': 'mongodb+srv://Gubbu:y%40v3XD%40d-ZNeXCs@cluster0.c8nak47.mongodb.net/test'
+#             } 
+#     }
+# }
 
 
 
