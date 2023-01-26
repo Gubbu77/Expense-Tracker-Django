@@ -28,11 +28,7 @@ def index_view(response):
     meal_amt = Data.objects.filter(year= se_year, month= se_month, category = 'Meal').aggregate(Sum('amount'))['amount__sum']
     if meal_amt == None:
         meal_amt = 0
-    # meal_amt = 0
-    # for i in meal_data:
-    #     id = i.id
-    #     m_amount_data = Data.objects.get(id = id)
-    #     meal_amt += m_amount_data.amount
+   
 
     # Shopping data
     shop_amt = Data.objects.filter(year= se_year, month= se_month, category = 'Shopping').aggregate(Sum('amount'))['amount__sum']
