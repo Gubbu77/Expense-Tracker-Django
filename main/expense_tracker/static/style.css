@@ -67,11 +67,7 @@ header{
     max-height: 600px;
 }
 
-@media screen and (min-width: 80rem) {
-    .container {
-      margin: 1em 2em;
-    }
-  }
+
 
 .colors{
     background-color: rgb(255, 186, 58);
