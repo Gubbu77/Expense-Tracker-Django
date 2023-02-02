@@ -1,7 +1,5 @@
 
-header{
-    border-bottom: 0.3px solid rgb(162, 162, 162);
-}
+
 .bar_container{
     display: flex;
     flex-direction: row;
