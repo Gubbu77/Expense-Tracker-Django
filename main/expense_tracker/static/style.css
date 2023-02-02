@@ -3,7 +3,6 @@ body{
     background-color: white;
 }
 header{
-    height: auto;
     border-bottom: 0.3px solid rgb(162, 162, 162);
 }
 .bar_container{
