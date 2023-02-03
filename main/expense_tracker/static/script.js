@@ -1,3 +1,3 @@
 function myFunction() {
-    alert("Close the window immeadiatly");
+    alert("Hello from static file!");
   }
