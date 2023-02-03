@@ -1,3 +1,3 @@
 function myFunction() {
-    alert("Close the window now");
+    alert("Close the window immeadiatly");
   }
