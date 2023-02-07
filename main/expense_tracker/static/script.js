@@ -1,3 +1,3 @@
 function myFunction() {
-    alert("Hello from static fi");
+    alert("Hello from static f");
   }
