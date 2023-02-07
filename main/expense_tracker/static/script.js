@@ -1,3 +1,3 @@
 function myFunction() {
-    alert("Hello from stat");
+    alert("Hello from sta");
   }
