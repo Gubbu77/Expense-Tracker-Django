@@ -1,3 +1,3 @@
 function myFunction() {
-    alert("Hello from static file");
+    alert("Hello from static fil");
   }
