@@ -1,3 +1,3 @@
 function myFunction() {
-    alert("Hello from st");
+    alert("Hello from s");
   }
