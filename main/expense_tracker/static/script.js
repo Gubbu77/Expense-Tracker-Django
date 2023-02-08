@@ -1,3 +1,3 @@
 function myFunction() {
-    alert("Hel");
+    alert("He");
   }
