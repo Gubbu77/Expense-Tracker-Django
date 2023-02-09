@@ -1,3 +1,3 @@
 function myFunction() {
-    alert("Gubbu");
+    alert("Gubbu Pro");
   }
