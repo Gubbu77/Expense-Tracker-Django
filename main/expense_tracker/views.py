@@ -59,7 +59,7 @@ def index_view(response):
     if oth_amt == None:
         oth_amt = 0
 
-    # monthly total Aug////////////////////////////////////////////////////////
+    # monthly total Aug --------------------------------------------------
     data_of_year = Data.objects.filter(year= se_year)
     dec_total_amt = 0
     for i in data_of_year:
