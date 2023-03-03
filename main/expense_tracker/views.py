@@ -3,7 +3,7 @@ from .models import Data
 from datetime import datetime
 
 # decimal context
-from decimal import Decimal
+
 from bson import Decimal128
 import string
 from django.db.models import Sum
