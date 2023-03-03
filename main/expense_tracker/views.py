@@ -273,21 +273,15 @@ def list_view(response):
     else:
         se_month = today.strftime("%b")
         se_year = today.year
-
-
     list_data = Data.objects.filter(year= se_year, month= se_month)
     p = {
         'list_data': list_data,
         'se_year': se_year,
         'se_month': se_month,
     }
-
     return render(response, 'main/list.html', p)
 
-
 def del_list(response, pk):
-
     item = Data.objects.get(id = pk)
     item.delete()
-
     return redirect('/list')
