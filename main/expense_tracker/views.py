@@ -14,16 +14,13 @@ def index_view(response):
     else:
         se_month = today.strftime("%b")
         se_year = today.year
-
-
     list_data = Data.objects.filter(year= se_year, month= se_month)
 
     # meal data
     meal_amt = Data.objects.filter(year= se_year, month= se_month, category = 'Meal').aggregate(Sum('amount'))['amount__sum']
     if meal_amt == None:
         meal_amt = 0
-   
-
+        
     # Shopping data
     shop_amt = Data.objects.filter(year= se_year, month= se_month, category = 'Shopping').aggregate(Sum('amount'))['amount__sum']
     if shop_amt == None:
@@ -75,6 +72,7 @@ def index_view(response):
             id = i.id
             jan_amt = Data.objects.get(id = id)
             jan_total_amt += jan_amt.amount
+            
     # monthly total feb
     feb_total_amt = 0
     for i in data_of_year:
@@ -197,8 +195,6 @@ def index_view(response):
         gained_this_month = oct_total_amt - nov_total_amt
     if se_month == "Dec":
         gained_this_month = nov_total_amt - dec_total_amt
-    
-    
 
     p = {
         "list_data" : list_data,
@@ -237,8 +233,6 @@ def index_view(response):
         'gained_this_month' : gained_this_month,
 
     }
-
-
     return render(response, 'main/index.html', p)
 
 def add_list(response):
@@ -262,8 +256,6 @@ def add_list(response):
         db.dateandtime = auto_date
         db.time = auto_time
         db.save()
-
-        
     return render(response, 'main/add.html', {})
 
 def list_view(response):
