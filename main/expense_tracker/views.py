@@ -3,7 +3,6 @@ from .models import Data
 from datetime import datetime
 from django.db.models import Sum
 
-# Create your views here.
 today = datetime.now()
 auto_time = today.strftime("%X")
 auto_date =today.strftime("%Y-%m-%d")
