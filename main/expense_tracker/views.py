@@ -4,7 +4,6 @@ from datetime import datetime
 
 # decimal context
 
-from bso 
 import string
 from django.db.models import Sum
 
