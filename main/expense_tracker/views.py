@@ -1,10 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Data
 from datetime import datetime
-
-# decimal context
-
-import string
 from django.db.models import Sum
 
 # Create your views here.
