@@ -4,7 +4,7 @@ from datetime import datetime
 
 # decimal context
 
-from bson import e
+from bson import 
 import string
 from django.db.models import Sum
 
