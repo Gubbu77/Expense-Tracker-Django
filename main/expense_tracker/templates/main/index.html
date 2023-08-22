@@ -338,7 +338,7 @@
 
            datasets: [
               {
-                data: [{{meal_amt}}, {{shop_amt}}, {{veh_amt}}, {{gro_amt}}, {{util_amt}}, {{os_amt}}, {{gain_amt}}, {{oth_amt}}],
+                data: {{amounts}},
 
                 backgroundColor: [
                     'rgb(255, 186, 58)',
@@ -379,8 +379,7 @@
             
             datasets: [
                 {
-                    data: [{{meal_amt}}, {{shop_amt}}, {{veh_amt}}, {{gro_amt}}, {{util_amt}}, {{os_amt}}, {{gain_amt}}, {{oth_amt}}],
-
+                    data: {{amounts}},
                     backgroundColor: [
                         'rgb(255, 186, 58)',
                         'rgb(255, 68, 68)',
@@ -449,7 +448,7 @@
                         'rgb(75, 192, 192)',
                       ],
                       borderWidth: 1,
-                      data: [{{jan_total_amt}}, {{feb_total_amt}}, {{mar_total_amt}}, {{apr_total_amt}}, {{may_total_amt}}, {{jun_total_amt}}, {{july_total_amt}}, {{aug_total_amt}}, {{sep_total_amt}}, {{oct_total_amt}}, {{nov_total_amt}}, {{dec_total_amt}}]
+                      data: {{monthly_total}},
                     }
                   ]
                 },
