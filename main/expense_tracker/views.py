@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Data
-from datetime import datetime
 from django.db.models import Sum
 from django.utils.text import slugify
+from datetime import datetime, date, timedelta
 
 
 today = datetime.now()
 auto_time = today.strftime("%X")
-auto_date =today.strftime("%Y-%m-%d")
+auto_date = today.strftime("%Y-%m-%d")
 
 def index_view(response):
     se_month = today.strftime("%b")
@@ -17,7 +17,7 @@ def index_view(response):
         se_year = response.POST['sse_year']
         se_month = response.POST['sse_month']
 
-    list_data = Data.objects.filter(year= se_year, month= se_month)
+    list_data = Data.objects.filter(year=se_year, month=se_month)
     data_dict = {}
 
     data_dict.setdefault("category_wise", {})
@@ -36,7 +36,7 @@ def index_view(response):
     # monthly total
     months = {"Jan":1, "Feb":2, "Mar":3, "Apr":4, "May":5, "Jun":6, "Jul":7, "Aug":8, "Sep":9, "Oct":10, "Nov":11, "Dec":12}
     keys = list(months.keys())
-    print(se_month)
+
     data_dict.setdefault("monthly_total", {})
     for month in keys:
         data_dict["monthly_total"].setdefault(month, 0)
@@ -50,10 +50,21 @@ def index_view(response):
     yearly_expense = Data.objects.filter(year=se_year).aggregate(Sum('amount'))['amount__sum']
     monthly_expense = data_dict["monthly_total"].get(se_month)
 
-    # past_month = keys[months.get(se_month) - 2]
-    # print(data_dict["monthly_total"].get(past_month))
-    # gained_this_month = data_dict["monthly_total"].get(past_month) - data_dict["monthly_total"].get(se_month)
-    gained_this_month = 0
+    current_date = datetime(int(se_year), months[se_month], 1)
+    previous_month = current_date - timedelta(days=current_date.day)
+
+    if se_month == "Jan":
+        se_year =  int(previous_month.year)
+
+    past_expense = Data.objects.filter(
+        year=se_year, 
+        month=previous_month.strftime("%b")
+    ).aggregate(Sum('amount'))["amount__sum"]
+
+    gained_this_month = (
+        float(past_expense if past_expense else 0.0) - 
+        float(monthly_expense if monthly_expense else 0.0)
+    )
 
     context = {
         "list_data" : list_data,
@@ -106,6 +117,6 @@ def list_view(response):
     return render(response, 'main/list.html', p)
 
 def del_list(response, pk):
-    item = Data.objects.get(id = pk)
+    item = Data.objects.get(id=pk)
     item.delete()
     return redirect('/list')
