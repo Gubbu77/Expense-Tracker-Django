@@ -3,6 +3,7 @@ from .models import Data
 from django.db.models import Sum
 from django.utils.text import slugify
 from datetime import datetime, date, timedelta
+from django.contrib.auth.forms import UserCreationForm
 
 
 today = datetime.now()
@@ -78,6 +79,7 @@ def index_view(response):
     }
     return render(response, 'main/index.html', context)
 
+
 def add_list(response):
     if response.POST:
         name = response.POST['add_name']
@@ -101,6 +103,7 @@ def add_list(response):
         db.save()
     return render(response, 'main/add.html', {})
 
+
 def list_view(response):
     if response.POST:
         se_year = response.POST['sse_year']
@@ -116,7 +119,29 @@ def list_view(response):
     }
     return render(response, 'main/list.html', p)
 
+
 def del_list(response, pk):
     item = Data.objects.get(id=pk)
     item.delete()
     return redirect('/list')
+
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username = username, password = password)
+            login(request, user)
+            return redirect('/index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'main/signup.html', {'form': form})
+
+
+def login_view(request):
+    if request.POST:
+        print(request.POST["username"])
+    return render(request, 'main/login.html', {})

@@ -3,6 +3,8 @@ from expense_tracker import views
 
 urlpatterns = [
     path('', views.index_view, name= "index"),
+    path('login/', views.login_view, name='login'),
+    path('signup/', views.signup_view, name='signup'),
     path('index_view', views.index_view, name= "index"),
     path('index/', views.index_view, name= "index"),
     path('add/', views.add_list, name= "add"),

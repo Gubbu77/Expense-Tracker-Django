@@ -2,7 +2,6 @@ from django.db import models
 from datetime import date
 
 # Create your models here.
-date = date.today()
 class Data(models.Model):
     category_items = (
         ("Meal","Meal"),
