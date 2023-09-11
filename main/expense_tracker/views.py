@@ -3,7 +3,11 @@ from .models import Data
 from django.db.models import Sum
 from django.utils.text import slugify
 from datetime import datetime, date, timedelta
-from django.contrib.auth.forms import UserCreationForm
+from .forms import NewUserForm
+from django.contrib.auth import authenticate, login
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+
 
 
 today = datetime.now()
@@ -128,20 +132,31 @@ def del_list(response, pk):
 
 def signup_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = NewUserForm(request.POST)
+
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username = username, password = password)
+
             login(request, user)
-            return redirect('/index')
+            return HttpResponseRedirect("/index")
+
     else:
-        form = UserCreationForm()
+        form = NewUserForm()
     return render(request, 'main/signup.html', {'form': form})
 
 
 def login_view(request):
-    if request.POST:
-        print(request.POST["username"])
-    return render(request, 'main/login.html', {})
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect('/index')
+        else:
+            messages.error(request, 'Invalid login credentials')
+
+    return render(request, 'main/login.html')
