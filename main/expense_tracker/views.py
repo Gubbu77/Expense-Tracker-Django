@@ -92,8 +92,6 @@ def add_list(response):
         note = response.POST["add_note"]
         year = response.POST['add_year']
         month = response.POST["add_month"]
-        # date = response.POST['add_date']
-        # time = response.POST["add_time"]
 
         db = Data()
         db.name = name
