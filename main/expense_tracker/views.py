@@ -40,10 +40,9 @@ def index_view(response):
 
     # monthly total
     months = {"Jan":1, "Feb":2, "Mar":3, "Apr":4, "May":5, "Jun":6, "Jul":7, "Aug":8, "Sep":9, "Oct":10, "Nov":11, "Dec":12}
-    keys = list(months.keys())
 
     data_dict.setdefault("monthly_total", {})
-    for month in keys:
+    for month in list(months.keys()):
         data_dict["monthly_total"].setdefault(month, 0)
         amount = Data.objects.filter(year=se_year, month=month).aggregate(Sum('amount'))["amount__sum"]
         if amount:
